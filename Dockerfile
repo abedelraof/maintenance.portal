@@ -1,4 +1,4 @@
-FROM php:7.4-apache-stretch
+FROM php:7.4-apache-buster
 RUN docker-php-ext-install pdo pdo_mysql
 RUN apt-get update -y && apt-get install -y libpng-dev
 RUN apt-get update && \
