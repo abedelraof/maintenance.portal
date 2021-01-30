@@ -13,7 +13,7 @@ RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 EXPOSE 8080
-COPY . /var/www/
+COPY . /var/www`/
 WORKDIR /var/www/
 RUN composer install
 
