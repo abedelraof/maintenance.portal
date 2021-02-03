@@ -77,8 +77,8 @@ class CheckLoginFormRequest extends FormRequest
                 $this->addFilesTable();
                 $this->addOtherMobileNumberColumn();
 
-                $verificationCode = rand(10000, 99999);
-//                $verificationCode = 12345;
+//                $verificationCode = rand(10000, 99999);
+                $verificationCode = 12345;
 
                 $this->sendSMS($customer->mobileNumber,
                     "Your verification code is {$verificationCode}");

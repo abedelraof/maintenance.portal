@@ -165,7 +165,7 @@
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
     <!--begin::Logo-->
-    <a href="https://preview.keenthemes.com/keen/demo3/rtl/index.html">
+    <a href="">
         <img alt="Logo" src="/img/logo.svg" class="max-h-30px">
     </a>
     <!--end::Logo-->
@@ -318,7 +318,7 @@
                     <!--begin::Logo-->
                     <div class="d-none d-lg-flex align-items-center flex-wrap">
                         <!--begin::Logo-->
-                        <a href="https://preview.keenthemes.com/keen/demo3/rtl/index.html">
+                        <a href="">
                             <img alt="Logo" src="/img/logo-4.svg" class="max-h-50px">
                         </a>
                         <!--end::Logo-->
@@ -396,14 +396,14 @@
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
                         <span class="text-muted font-weight-bold mr-2">2021©</span>
-                        <a href="http://keenthemes.com/keen" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
+                        <a href="" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
                     </div>
                     <!--end::Copyright-->
                     <!--begin::Nav-->
                     <div class="nav nav-dark order-1 order-md-2">
-                        <a href="http://keenthemes.com/keen" target="_blank" class="nav-link pr-3 pl-0">About</a>
-                        <a href="http://keenthemes.com/keen" target="_blank" class="nav-link px-3">Team</a>
-                        <a href="http://keenthemes.com/keen" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
+                        <a href="" target="_blank" class="nav-link pr-3 pl-0">About</a>
+                        <a href="" target="_blank" class="nav-link px-3">Team</a>
+                        <a href="" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
                     </div>
                     <!--end::Nav-->
                 </div>
