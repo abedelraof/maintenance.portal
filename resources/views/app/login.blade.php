@@ -69,6 +69,10 @@
                         </button>
                     </div>
                     <!--end::Action-->
+
+                    <div style="margin-top: 40px">
+                        Powered by <a href="https://asaas.rent">asaas.rent</a>
+                    </div>
                     <input type="hidden">
                     <div></div>
                 </form>
