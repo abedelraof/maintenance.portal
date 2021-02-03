@@ -61,14 +61,15 @@ class VerifySubmitRequest extends FormRequest
                     })
                     ->first();
                 if (!$customer) {
-                    dd("ss");
-                    $validator->errors()->add('id', "رقم التحقق خاطيء");
+                    $validator->errors()->add('maintenance_app_verification_code', "رقم التحقق خاطيء");
                     return false;
                 }
+
                 // all verified, set verification code.
 
 //                $verificationCode = rand(10000, 99999);
                 $verificationCode = 12345;
+
 
                 $customer->maintenance_app_verification_code = $verificationCode;
                 if ($customer->save()) {

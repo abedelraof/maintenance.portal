@@ -86,6 +86,9 @@ class AppController extends Controller
         $units = [];
         $property = null;
 
+        $asaasContract = session()->get("asaasContract");
+
+
         // sync data between Asaas and Maintenance.
 
         // sync Customer.
@@ -162,8 +165,10 @@ class AppController extends Controller
         return view("app.create_ticket", [
             "categories" => $categories,
             "units" => $units,
-            "property" => $property
+            "property" => $property,
+            "asaasContract" => $asaasContract
         ]);
+
     }
 
     public function actionStoreTicket(CreateTicketRequest $request)
@@ -176,7 +181,8 @@ class AppController extends Controller
                     "renter_id" => $request->get("customer_id"),
                     "category_id" => $request->get("category"),
                     "notes" => $request->get("description"),
-                    "renter_mobile" => $request->get("otherMobileNumber"),
+                    "renter_mobile" => $request->get("mobileNumber"),
+                    "otherMobileNumber" => $request->get("otherMobileNumber"),
                     "property_longitude" => $request->get("lng"),
                     "property_latitude" => $request->get("lat"),
                 ]);

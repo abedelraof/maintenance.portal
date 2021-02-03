@@ -69,16 +69,24 @@ class CheckLoginFormRequest extends FormRequest
                 session()->put("asaas_customer", $customer);
                 session()->put("asaasPropertyId", $contract->propertyId);
                 session()->put("asaasContractId", $contract->id);
+                session()->put("asaasContract", $contract);
 
                 // all verified, set verification code.
 
                 $this->addVerificationCodeColumn();
                 $this->addFilesTable();
+                $this->addOtherMobileNumberColumn();
 
-//                $verificationCode = rand(10000, 99999);
-                $verificationCode = 12345;
+                $verificationCode = rand(10000, 99999);
+//                $verificationCode = 12345;
+
+                $this->sendSMS($customer->mobileNumber,
+                    "Your verification code is {$verificationCode}");
 
                 $customer->maintenance_app_verification_code = $verificationCode;
+
+                // send verification code.
+
                 if ($customer->save()) {
                     // send sms message.
                     return true;
@@ -112,6 +120,65 @@ class CheckLoginFormRequest extends FormRequest
                 $table->string('full_path');
                 $table->timestamps();
             });
+        }
+    }
+
+    private function addOtherMobileNumberColumn()
+    {
+        $schema = Schema::connection('maintenance');
+        $table = "maintenance_tickets";
+        $column = "otherMobileNumber";
+        if (!$schema->hasColumn($table, $column)) {
+            $schema->table($table, function (Blueprint $table) use ($column) {
+                $table->string($column)->nullable();
+            });
+        }
+    }
+
+    private function sendSMS($recipient, $message)
+    {
+        $senderAccountUsername = "966554969016";
+        $senderAccountPassword = "myasaas2018";
+        $senderName = "Nahdi";
+        $recipient = "559028465";
+        if (strpos($recipient, "966") === false) {
+            $recipient = "00966" . $recipient;
+        }
+
+        $data = json_encode([
+            'Username' => $senderAccountUsername,
+            "Password" => $senderAccountPassword,
+            "Tagname" => $senderName,
+            "RecepientNumber" => $recipient,
+            "Message" => $message,
+            "SendDateTime" => 0,
+            "EnableDR" => False
+        ]);
+
+
+        try {
+
+            $ch = \curl_init();
+            curl_setopt($ch, CURLOPT_URL, env('SMS_API_GATEWAY', 'http://api.yamamah.com/SendSMS'));
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+            ));
+
+            $server_output = curl_exec($ch);
+
+            curl_close($ch);
+
+            $response = (array)json_decode($server_output);
+
+//            dd($response);
+
+        } catch (\Exception $exception) {
+
+//            dd($exception);
+
         }
     }
 

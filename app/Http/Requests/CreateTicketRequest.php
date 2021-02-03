@@ -41,7 +41,7 @@ class CreateTicketRequest extends FormRequest
             "units" => "required",
             "description" => "required",
             "mobileNumber" => "required|numeric",
-            "otherMobileNumber" => "required|numeric",
+            "otherMobileNumber" => "",
             "lat" => "required|numeric",
             "lng" => "required|numeric",
             "files" => "",

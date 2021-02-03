@@ -61,6 +61,22 @@
                                                name="category"
                                                id="input_hd_category">
 
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="mb-3">
+                                                    <label
+                                                        class="form-label">
+                                                        رقم العقد *
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           disabled=""
+                                                           value="{{ $asaasContract->cid }}">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="row">
 
@@ -85,6 +101,7 @@
 
                                                 </div>
                                             </div>
+
                                             <div class="col-xl-6">
                                                 <div class="mb-3">
                                                     <label

@@ -316,7 +316,7 @@
             <div class="subheader bg-white h-100px" id="kt_subheader">
                 <div class="container flex-wrap justify-content-start flex-sm-nowrap">
                     <!--begin::Logo-->
-                    <div class="d-none d-lg-flex align-items-center flex-wrap w-250px">
+                    <div class="d-none d-lg-flex align-items-center flex-wrap">
                         <!--begin::Logo-->
                         <a href="https://preview.keenthemes.com/keen/demo3/rtl/index.html">
                             <img alt="Logo" src="/img/logo-4.svg" class="max-h-50px">
@@ -325,7 +325,7 @@
                     </div>
                     <!--end::Logo-->
                     <!--begin::Nav-->
-                    <div class="subheader-nav nav">
+                    <div class="subheader-nav nav  ml-5">
                         <!--begin::Item-->
                         <a href="#"
                            class="nav-item active">
