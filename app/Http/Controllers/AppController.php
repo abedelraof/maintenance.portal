@@ -108,7 +108,7 @@ class AppController extends Controller
             );
             session()->put("user", $model);
             if (!$model) {
-                abort();
+                abort(404);
             }
         }
 
@@ -127,7 +127,7 @@ class AppController extends Controller
                     )
                 );
                 if (!$property) {
-                    abort();
+                    abort(404);
                 }
 
                 // sync Units.
@@ -148,7 +148,7 @@ class AppController extends Controller
                                     ]
                                 );
                                 if (!$unit) {
-                                    abort();
+                                    abort(404);
                                 }
                                 $units[] = $unit;
                             }
@@ -159,7 +159,7 @@ class AppController extends Controller
 
             }
         } else {
-            abort();
+            abort(404);
         }
 
         return view("app.create_ticket", [
