@@ -52,12 +52,16 @@ class CheckLoginFormRequest extends FormRequest
                     $validator->errors()->add('contractNumber', "رقم العقد غير موجود");
                     return false;
                 }
-                
+
                 // check renter id.
                 $customer = $contract->Customer;
                 if (!$customer) {
                     $validator->errors()->add('id', "رقم هوية العميل غير موجودة");
                     return false;
+                } else {
+                    if ($customer->personalId != $this->request->get("id")) {
+                        $validator->errors()->add('id', "رقم هوية العميل غير موجودة");
+                    }
                 }
 
                 $user = $contract->Customer->User;
