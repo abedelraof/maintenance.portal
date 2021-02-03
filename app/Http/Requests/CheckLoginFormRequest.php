@@ -79,6 +79,7 @@ class CheckLoginFormRequest extends FormRequest
 
 //                $verificationCode = rand(10000, 99999);
                 $verificationCode = 12345;
+                // test
 
                 $this->sendSMS($customer->mobileNumber,
                     "Your verification code is {$verificationCode}");
