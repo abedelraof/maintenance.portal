@@ -6,7 +6,9 @@ RUN apt-get update && \
         zlib1g-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install zip unzip
+RUN apt-get update
 RUN apt-get install curl
+
 
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
