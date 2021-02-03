@@ -184,7 +184,7 @@
                                                 <div class="mb-3">
                                                     <label for="l3"
                                                            class="form-label">
-                                                        رقم جوال أخر *
+                                                        رقم جوال أخر
                                                     </label>
                                                     <input type="text"
                                                            name="otherMobileNumber"
