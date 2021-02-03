@@ -23,21 +23,42 @@
                     <!--begin::Title-->
                     <!--begin::Form group-->
                     <div class="form-group fv-plugins-icon-container">
-                        <label class="font-size-h6 font-weight-bolder text-dark">رقم العقد</label>
-                        <input class="form-control form-control-solid h-auto p-6 rounded-lg" type="text"
-                               name="username" placeholder="أدخل رقم العقد هنا " autocomplete="off">
-                        <div class="fv-plugins-message-container"></div>
+                        <label for="contractNumber" class="font-size-h6 font-weight-bolder text-dark">رقم العقد</label>
+                        <input id="contractNumber"
+                               class="form-control form-control-solid h-auto p-6 rounded-lg"
+                               type="text"
+                               name="contractNumber"
+                               value="{{ old("contractNumber") }}"
+                               placeholder="أدخل رقم العقد هنا "
+                               autocomplete="off">
+
+                        @if($errors->any("contractNumber"))
+                            <div
+                                class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                {{ $errors->first("contractNumber") }}
+                            </div>
+                        @endif
+
                     </div>
                     <!--end::Form group-->
                     <!--begin::Form group-->
                     <div class="form-group fv-plugins-icon-container">
                         <div class="d-flex justify-content-between mt-n5">
-                            <label class="font-size-h6 font-weight-bolder text-dark pt-5">رقم الهوية </label>
+                            <label for="id" class="font-size-h6 font-weight-bolder text-dark pt-5">رقم الهوية </label>
                         </div>
-                        <input class="form-control form-control-solid h-auto p-6 rounded-lg" type="text"
+                        <input class="form-control form-control-solid h-auto p-6 rounded-lg"
+                               type="text"
                                placeholder="أدخل رقم الهوية هنا"
-                               name="password" autocomplete="off">
-                        <div class="fv-plugins-message-container"></div>
+                               name="id"
+                               id="id"
+                               value="{{ old("id") }}"
+                               autocomplete="off">
+                        @if($errors->any("id"))
+                            <div
+                                class="fv-plugins-message-container font-size-h6-xl text-danger mt1">
+                                {{ $errors->first("id") }}
+                            </div>
+                        @endif
                     </div>
                     <!--end::Form group-->
                     <!--begin::Action-->

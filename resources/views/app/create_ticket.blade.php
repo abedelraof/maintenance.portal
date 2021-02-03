@@ -16,79 +16,22 @@
                     <div class="row no-gutters" style="overflow: hidden;">
                         <div class="col-xl-3">
                             <ul class="nav flex-column nav-pills">
+                                <?php foreach ($categories as $key => $category): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="home-tab-5" data-toggle="tab"
+                                    <a data-id="{{ $category->id }}"
+                                       class="category-link nav-link  @if($key == 1) active @endif"
+                                       id="home-tab-5" data-toggle="tab"
                                        href="#home-5">
-																			<span class="nav-icon">
-																				<i class="flaticon2-chat-1"></i>
-																			</span>
+                                                <span class="nav-icon">
+                                                    <i class="flaticon2-chat-1"></i>
+                                                </span>
                                         <span class="nav-text">
-                                                                <i class="fas fa-tint-slash mr-2"></i>
-                                                                <span>صيانة مياه</span>
-                                                            </span>
+                                            <i class="fas fa-chevron-circle-left  mr-2"></i>
+                                            <span>{{ $category->name_ar }}</span>
+                                        </span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab-5" data-toggle="tab"
-                                       href="#profile-5" aria-controls="profile">
-																			<span class="nav-icon">
-																				<i class="flaticon2-layers-1"></i>
-																			</span>
-
-                                        <span class="nav-text">
-                                                                <i class="fas fa-hammer mr-2"></i>
-                                                                <span>صيانة كهرباء</span>
-                                                            </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="profile-tab-5" data-toggle="tab"
-                                       href="#profile-5" aria-controls="profile">
-																			<span class="nav-icon">
-																				<i class="flaticon2-layers-1"></i>
-																			</span>
-                                        <span class="nav-text">
-                                                                <i class="fas fa-door-open mr-2"></i>
-                                                                <span>صيانة مصاعد</span>
-                                                            </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab-5" data-toggle="tab"
-                                       href="#profile-5" aria-controls="profile">
-																			<span class="nav-icon">
-																				<i class="flaticon2-layers-1"></i>
-																			</span>
-                                        <span class="nav-text">
-                                                                <i class="fas fa-temperature-low mr-2"></i>
-                                                                <span>صيانة تكييف</span>
-                                                            </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab-5" data-toggle="tab"
-                                       href="#profile-5" aria-controls="profile">
-																			<span class="nav-icon">
-																				<i class="flaticon2-layers-1"></i>
-																			</span>
-                                        <span class="nav-text">
-                                                                <i class="fas fa-soap mr-2"></i>
-                                                                <span>تنظيف</span>
-                                                            </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab-5" data-toggle="tab"
-                                       href="#profile-5" aria-controls="profile">
-																			<span class="nav-icon">
-																				<i class="flaticon2-layers-1"></i>
-																			</span>
-                                        <span class="nav-text">
-                                                                <i class="fab fa-mixcloud mr-2"></i>
-                                                                <span>طلبات اخرى</span>
-                                                            </span>
-                                    </a>
-                                </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <div class="col-xl-9 p-10" style="box-shadow: 2px 0 20px 0px #80808059;">
@@ -96,30 +39,73 @@
                                 <div class="tab-pane fade active show" id="home-5" role="tabpanel"
                                      aria-labelledby="home-tab-5">
 
-                                    <form>
+                                    <form action="{{ route("tickets.store") }}" id="tickets-store-form" method="post">
+
+                                        @csrf
+
+
+                                        <input type="hidden" value="{{ old("lat") }}" name="lat" id="input_hd_lat">
+
+                                        <input type="hidden" value="{{ old("lng") }}" name="lng" id="input_hd_lng">
+
+                                        <input type="hidden" value="{{ $property->id }}" name="property_id"
+                                               id="input_hd_property_id">
+
+                                        <input type="hidden" value="{{ session("user")->id }}" name="customer_id"
+                                               id="input_hd_customer_id">
+
+                                        <input type="hidden" value="{{ $units[0]->id }}" name="units[]"
+                                               id="input_hd_units">
+
+                                        <input type="hidden" value="{{ old("category", $categories[1]->id) }}"
+                                               name="category"
+                                               id="input_hd_category">
+
 
                                         <div class="row">
 
                                             <div class="col-xl-6">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1"
-                                                           class="form-label">اسم
-                                                        العقار</label>
-                                                    <input type="text" class="form-control"
-                                                           id="exampleInputEmail1" disabled=""
-                                                           value="عقار الأطباء 10"
+                                                    <label
+                                                        class="form-label">
+                                                        اسم العقار *
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           disabled=""
+                                                           value="{{ $property->title }}"
                                                            aria-describedby="emailHelp">
+
+                                                    @if($errors->any("property_id"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("property_id") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputPassword1"
-                                                           class="form-label">رقم
-                                                        الوحدة</label>
-                                                    <input type="text" class="form-control"
+                                                    <label
+                                                        class="form-label">
+                                                        رقم الوحدة *
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
                                                            disabled=""
-                                                           value="شقة رقم 201 , حاصل رقم 2010"
-                                                           id="exampleInputPassword1">
+                                                           value="{{ implode(" , ", array_map(function ($item) {
+    return $item->number;
+}, $units)) }}"
+                                                    >
+
+                                                    @if($errors->any("units"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("units") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
 
@@ -129,13 +115,24 @@
 
                                             <div class="col-xl-12">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1"
-                                                           class="form-label">تفاصيل
-                                                        الطلب</label>
-                                                    <textarea name="" class="form-control" id=""
+                                                    <label for="l1"
+                                                           class="form-label">
+                                                        تفاصيل الطلب *
+                                                    </label>
+                                                    <textarea name="description"
+                                                              id="l1"
+                                                              class="form-control" id=""
                                                               cols="30"
                                                               placeholder="أدخل تفاصيل الطلب هنا "
-                                                              rows="10"></textarea>
+                                                              rows="10">{{ old("description") }}</textarea>
+
+                                                    @if($errors->any("description"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("description") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
 
@@ -145,26 +142,47 @@
 
                                             <div class="col-xl-6">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1"
+                                                    <label for="l2"
                                                            class="form-label">
-                                                        رقم الجوال
+                                                        رقم الجوال *
                                                     </label>
-                                                    <input type="text" class="form-control"
-                                                           id="exampleInputEmail1"
-                                                           value="0597848418"
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="l2"
+                                                           name="mobileNumber"
+                                                           value="{{ old("mobileNumber", session()->get("user")->mobile) }}"
                                                            aria-describedby="emailHelp">
+
+                                                    @if($errors->any("mobileNumber"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("mobileNumber") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
 
                                             <div class="col-xl-6">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputPassword1"
+                                                    <label for="l3"
                                                            class="form-label">
-                                                        رقم جوال أخر
+                                                        رقم جوال أخر *
                                                     </label>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text"
+                                                           name="otherMobileNumber"
+                                                           class="form-control"
+                                                           value="{{ old("otherMobileNumber") }}"
                                                            placeholder="أدخل رقم جوال اّخر هنا"
-                                                           id="exampleInputPassword1">
+                                                           id="l3">
+
+                                                    @if($errors->any("otherMobileNumber"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("otherMobileNumber") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
                                         </div>
@@ -174,7 +192,7 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputPassword1"
                                                            class="form-label">
-                                                        اختر موقعك على الخريطة
+                                                        اختر موقعك على الخريطة *
                                                     </label>
                                                     <div>
                                                         <input
@@ -185,6 +203,14 @@
                                                         />
                                                         <div id="googleMap"
                                                              style="height: 400px"></div>
+
+                                                        @if($errors->any("lat"))
+                                                            <div
+                                                                class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                                {{ $errors->first("lat") }}
+                                                            </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -202,6 +228,14 @@
                                                             <span>قم بسحب وافلات الصور هنا أو بامكانك الضغط هنا لتحميل الملف</span>
                                                         </div>
                                                     </div>
+
+                                                    @if($errors->any("files"))
+                                                        <div
+                                                            class="fv-plugins-message-container  font-size-h6-xl text-danger mt1">
+                                                            {{ $errors->first("files") }}
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
                                         </div>
@@ -270,8 +304,8 @@
 
 
                 //sets variable for lat and long
-                $('.lat').text(lat);
-                $('.long').text(long);
+                $('#input_hd_lat').val(lat);
+                $('#input_hd_lng').val(long);
 
                 // Listen for the event fired when the user selects a prediction and retrieve
                 // more details for that place.
@@ -322,6 +356,8 @@
 
                 map.addListener('click', function (event) {
                     marker.setPosition(event.latLng);
+                    $('#input_hd_lat').val(event.latLng.lat());
+                    $('#input_hd_lng').val(event.latLng.lng());
                 })
 
             }
@@ -354,14 +390,24 @@
 
 
             $(document).ready(function () {
-                // click on map and set you marker to that position
-                // google.maps.event.addListener(map, 'click', function (event) {
-                //     console.log("test")
-                //     marker.setPosition(event.latLng);
-                // });
+                $(".category-link").on("click", function () {
+                    $("#input_hd_category").val($(this).data("id"));
+                });
             });
 
-            $(".dropzone").dropzone({url: "/file/post"});
+            let myDropzone = new Dropzone(".dropzone", {
+                url: "{{ route("files.upload") }}"
+            });
+            myDropzone.on("success", function (file) {
+                let response = JSON.parse(file.xhr.response);
+                $("form#tickets-store-form").prepend(
+                    $("<input/>")
+                        .attr("type", "hidden")
+                        .attr("name", "files[]")
+                        .val(response.id)
+                )
+                // console.log(response)
+            });
 
         });
     </script>

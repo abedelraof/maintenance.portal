@@ -24,9 +24,18 @@
                     <!--begin::Form group-->
                     <div class="form-group fv-plugins-icon-container">
                         <label class="font-size-h6 font-weight-bolder text-dark">أدخل رمز التحقق </label>
-                        <input class="form-control form-control-solid h-auto p-6 rounded-lg" type="text"
-                               name="username" placeholder="" autocomplete="off">
-                        <div class="fv-plugins-message-container"></div>
+                        <input class="form-control form-control-solid h-auto p-6 rounded-lg"
+                               type="text"
+                               name="maintenance_app_verification_code"
+                               placeholder=""
+                               value="{{ old("maintenance_app_verification_code") }}"
+                               autocomplete="off">
+                        @if($errors->any("maintenance_app_verification_code"))
+                            <div
+                                class="fv-plugins-message-container font-size-h6-xl text-danger mt1">
+                                {{ $errors->first("maintenance_app_verification_code") }}
+                            </div>
+                        @endif
                     </div>
                     <!--end::Form group-->
 

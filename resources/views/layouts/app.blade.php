@@ -264,7 +264,7 @@
 												</g>
 											</svg>
                                             <span>
-                                                عبدالرحمن بن علي العنزي
+                                                {{ session()->get("user")->name }}
                                             </span>
                                             <!--end::Svg Icon-->
 										</span>
