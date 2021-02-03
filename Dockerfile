@@ -6,10 +6,10 @@ RUN apt-get update && \
         zlib1g-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install zip unzip
+RUN apt-get install curl
 
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
-RUN docker-php-ext-install curl
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
