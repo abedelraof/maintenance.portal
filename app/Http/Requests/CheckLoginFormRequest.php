@@ -141,7 +141,7 @@ class CheckLoginFormRequest extends FormRequest
         $senderAccountUsername = "966554969016";
         $senderAccountPassword = "myasaas2018";
         $senderName = "Nahdi";
-        $recipient = "559028465";
+//        $recipient = "559028465";
         if (strpos($recipient, "966") === false) {
             $recipient = "00966" . $recipient;
         }
