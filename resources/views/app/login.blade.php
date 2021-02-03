@@ -71,7 +71,7 @@
                     <!--end::Actillon-->
 
                     <div style="margin-top: 40px">
-                        Powered by <a href="https://asaas.rent">asaas.rent</a>
+                        Powered by <a href="https://asaas.rent">Asaas</a>
                     </div>
                     <input type="hidden">
                     <div></div>
