@@ -13,4 +13,9 @@ class Contract extends Model
 
     protected $table = "tbl_contract";
 
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, "id", "renter");
+    }
+
 }

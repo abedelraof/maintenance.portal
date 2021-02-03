@@ -52,17 +52,15 @@ class CheckLoginFormRequest extends FormRequest
                     $validator->errors()->add('contractNumber', "رقم العقد غير موجود");
                     return false;
                 }
+                
                 // check renter id.
-                $customer = Customer::where("personalId", $this->request->get("id"))
-                    ->whereHas("User", function ($q) {
-                        $q->where("isDeleted", 0);
-                    })
-                    ->with("User")
-                    ->first();
+                $customer = $contract->Customer;
                 if (!$customer) {
                     $validator->errors()->add('id', "رقم هوية العميل غير موجودة");
                     return false;
                 }
+
+                $user = $contract->Customer->User;
 
                 session()->put("asaas_customer", $customer);
                 session()->put("asaasPropertyId", $contract->propertyId);
