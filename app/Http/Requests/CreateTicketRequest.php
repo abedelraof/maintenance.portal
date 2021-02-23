@@ -45,6 +45,7 @@ class CreateTicketRequest extends FormRequest
             "lat" => "required|numeric",
             "lng" => "required|numeric",
             "files" => "",
+            "contract_number" => "",
             "category" => "required|numeric"
         ];
     }

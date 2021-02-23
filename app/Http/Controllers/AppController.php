@@ -177,6 +177,7 @@ class AppController extends Controller
             DB::connection("maintenance")->transaction(function () use ($request) {
                 $model = MaintenanceTicket::create([
                     "property_id" => $request->get("property_id"),
+                    "contract_number" => $request->get("contract_number"),
                     "unit_id" => $request->get("units")[0],
                     "renter_id" => $request->get("customer_id"),
                     "category_id" => $request->get("category"),

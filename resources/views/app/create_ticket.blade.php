@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xl-12">
             <!--begin::Card-->
-            <div class="card card-custom gutter-b">
+            <div class="card card-custom gutter-b">`
                 <div class="card-header">
                     <div class="card-title">
                         <h3 class="card-label">اضافة طلب صيانة جديد </h3>
@@ -69,8 +69,9 @@
                                                         رقم العقد *
                                                     </label>
                                                     <input type="text"
-                                                           class="form-control"
-                                                           disabled=""
+                                                           readonly
+                                                           class="form-control bg-gray-100"
+                                                           name="contract_number"
                                                            value="{{ $asaasContract->cid }}">
 
                                                 </div>
@@ -185,7 +186,7 @@
                                                     <label for="l3"
                                                            class="form-label">
                                                         رقم جوال أخر
-                                                    </label>
+                                                    </label>`
                                                     <input type="text"
                                                            name="otherMobileNumber"
                                                            class="form-control"
@@ -287,6 +288,8 @@
 
     <script>
         var map, marker;
+        filesList = {}
+        counter = 100;
         $(document).ready(function () {
 
             function myMap(lat, long) {
@@ -413,17 +416,27 @@
             });
 
             let myDropzone = new Dropzone(".dropzone", {
+                addRemoveLinks: true,
                 url: "{{ route("files.upload") }}"
             });
             myDropzone.on("success", function (file) {
                 let response = JSON.parse(file.xhr.response);
+                let id = counter++;
+                filesList[file.name] = id;
                 $("form#tickets-store-form").prepend(
                     $("<input/>")
+                        .attr("id", id)
                         .attr("type", "hidden")
                         .attr("name", "files[]")
                         .val(response.id)
                 )
                 // console.log(response)
+            });
+            myDropzone.on("removedfile", function (file) {
+                let id = filesList[file.name];
+                console.log($(`#${id}`))
+                $(`#${id}`).remove();
+                return true;
             });
 
         });

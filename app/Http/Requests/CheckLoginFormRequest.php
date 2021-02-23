@@ -81,8 +81,8 @@ class CheckLoginFormRequest extends FormRequest
                 $verificationCode = 12345;
                 // test
 
-                $this->sendSMS($customer->mobileNumber,
-                    "Your verification code is {$verificationCode}");
+//                $this->sendSMS($customer->mobileNumber,
+//                    "Your verification code is {$verificationCode}");
 
                 $customer->maintenance_app_verification_code = $verificationCode;
 
@@ -129,6 +129,12 @@ class CheckLoginFormRequest extends FormRequest
         $schema = Schema::connection('maintenance');
         $table = "maintenance_tickets";
         $column = "otherMobileNumber";
+        if (!$schema->hasColumn($table, $column)) {
+            $schema->table($table, function (Blueprint $table) use ($column) {
+                $table->string($column)->nullable();
+            });
+        }
+        $column = "contract_number";
         if (!$schema->hasColumn($table, $column)) {
             $schema->table($table, function (Blueprint $table) use ($column) {
                 $table->string($column)->nullable();

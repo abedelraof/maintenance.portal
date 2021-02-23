@@ -95,8 +95,9 @@
             width: 400px;
             border: 1px solid gray;
             margin: 10px;
-            line-height: 34px;
+            line-height: 40px;
             box-shadow: 0px 2px 6px 0px #00000059;
+            height: 40px;
         }
 
         #pac-input:focus {
