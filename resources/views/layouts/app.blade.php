@@ -8,7 +8,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Google Tag Manager -->
-    <title>شركة محمد النهدي العقارية - بوابة المستأجرين</title>
+    <title>{{ currentConnection()->account_name }} - بوابة المستأجرين</title>
 
     <!--begin::Global Theme Styles(used by all pages)-->
     <link href="/css/plugins.bundle.rtl.css" rel="stylesheet" type="text/css">
@@ -234,7 +234,7 @@
                                 <li class="menu-item" aria-haspopup="true">
                                     <a href=""
                                        class="menu-link">
-                                        <span class="menu-text">شركة محمد النهدي العقارية - بوابة المستأجرين</span>
+                                        <span class="menu-text">{{currentConnection()->account_name}} - بوابة المستأجرين</span>
                                     </a>
                                 </li>
                             </ul>
@@ -324,7 +324,7 @@
                     <div class="d-none d-lg-flex align-items-center flex-wrap">
                         <!--begin::Logo-->
                         <a href="">
-                            <img alt="Logo" src="/img/logo-4.svg" class="max-h-50px">
+                            <img alt="Logo" src="{{ currentConnection()->account_logo }}" class="max-h-50px">
                         </a>
                         <!--end::Logo-->
                     </div>

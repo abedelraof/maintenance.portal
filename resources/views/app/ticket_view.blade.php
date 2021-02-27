@@ -172,7 +172,7 @@
                 </div>
                 <div class="card-body p-5">
 
-                    {{ $model->notes }}
+                    <?php echo nl2br($model->notes) ?>
 
                 </div>
             </div>

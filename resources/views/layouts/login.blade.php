@@ -44,13 +44,14 @@
             <div class="d-flex flex-column-auto flex-column">
                 <!--begin::Aside header-->
                 <a href="#" class="text-center mb-15">
-                    <img src="/img/footer-logo.png" alt="logo" style="height: 200px !important;">
+                    <img src="{{ currentConnection()->login_account_logo }}" alt="logo"
+                         style="height: 200px !important;">
                 </a>
                 <!--end::Aside header-->
                 <!--begin::Aside title-->
                 <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg text-white"
-                    style="line-height: 40px">مجموعة محمد النهدي
-                    العقارية
+                    style="line-height: 40px">
+                    {{ currentConnection()->account_name }}
                     <br>
                     سنوات من الخبرة
                 </h3>

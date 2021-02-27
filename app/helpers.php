@@ -25,3 +25,8 @@ function handleActiveMenuItem($type)
     return false;
 
 }
+
+function currentConnection(): \App\Models\ConnectionMapping
+{
+    return session()->get("connection");
+}
