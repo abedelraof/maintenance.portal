@@ -27,13 +27,21 @@ Route::middleware(['web'])->group(function () {
     Route::get('/verify', [\App\Http\Controllers\AppController::class, 'actionVerify'])->name("auth.verify");
     Route::post('/verify/submit', [\App\Http\Controllers\AppController::class, 'actionVerifySubmit'])->name("auth.verify.submit");
 
+
     Route::middleware(['auth.custom'])->group(function () {
-
-        Route::get('/dashboard/tickets/create', [\App\Http\Controllers\AppController::class, 'actionCreateTicket'])->name("tickets.create");
-        Route::post('/dashboard/tickets/store', [\App\Http\Controllers\AppController::class, 'actionStoreTicket'])->name("tickets.store");
-        Route::get('/dashboard/tickets/store/success', [\App\Http\Controllers\AppController::class, 'actionStoreSuccess'])->name("tickets.store.success");
-        Route::post('/dashboard/files/upload', [\App\Http\Controllers\AppController::class, 'actionUploadFile'])->name("files.upload");
-
+        Route::prefix('dashboard/')->group(function () {
+            Route::post('files/upload', [\App\Http\Controllers\AppController::class, 'actionUploadFile'])->name("files.upload");
+            // tickets .
+            Route::prefix('tickets/')->group(function () {
+                // create ticket
+                Route::get('create', [\App\Http\Controllers\AppController::class, 'actionCreateTicket'])->name("tickets.create");
+                Route::post('store', [\App\Http\Controllers\AppController::class, 'actionStoreTicket'])->name("tickets.store");
+                Route::get('store/success', [\App\Http\Controllers\AppController::class, 'actionStoreSuccess'])->name("tickets.store.success");
+                // show all tickets.
+                Route::get('list', [\App\Http\Controllers\AppController::class, 'actionListTickets'])->name("tickets.list");
+                Route::get('view/{model}', [\App\Http\Controllers\AppController::class, 'actionViewTicket'])->name("tickets.view");
+            });
+        });
     });
 
 });

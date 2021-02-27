@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Http\Requests\CheckLoginFormRequest;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\VerifyRequest;
@@ -24,6 +25,45 @@ use function PHPUnit\Framework\assertFileIsReadable;
 class AppController extends Controller
 {
 
+    public function actionListTickets()
+    {
+        $data = MaintenanceTicket::query()
+            ->where("renter_id", session()->get("user")->id)
+            ->orderBy("id", "desc")
+            ->paginate(15);
+        return view("app.tickets_list", [
+            "data" => $data
+        ]);
+    }
+
+    public function actionViewTicket(MaintenanceTicket $model)
+    {
+        $files = MaintenanceFile::where("ticket_id", $model->id)->get()->map(function ($item) {
+            $item->isImage = $this->isImage($item->full_path);
+            return $item;
+        });
+        return view("app.ticket_view", [
+            "model" => $model,
+            "files" => $files
+        ]);
+    }
+
+
+    private function isImage($mediapath)
+    {
+        $arr = explode(".", $mediapath);
+        $fileExtension = strtolower(end($arr));
+        $extensions = [
+            "png",
+            "jpg",
+            "jpeg",
+            "gif"
+        ];
+        if (in_array($fileExtension, $extensions)) {
+            return true;
+        }
+        return false;
+    }
 
     public function actionUploadFile(Request $request)
     {

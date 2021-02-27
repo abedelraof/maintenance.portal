@@ -49,4 +49,61 @@ class MaintenanceTicket extends Model
     protected $table = "maintenance_tickets";
 
     protected $guarded = [];
+
+    public function property()
+    {
+        return $this->belongsTo(MaintenanceProperty::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(MaintenanceUnit::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(TicketCategory::class);
+    }
+
+    public function getPropertyName()
+    {
+        if ($this->Property) {
+            return $this->Property->title;
+        }
+        return null;
+    }
+
+    public function getUnitNumber()
+    {
+        if ($this->Unit) {
+            return $this->Unit->number;
+        }
+        return null;
+    }
+
+    public function getCategoryName()
+    {
+        if ($this->Category) {
+            return $this->Category->name_ar;
+        }
+        return null;
+    }
+
+    public function files()
+    {
+        return $this->hasMany(MaintenanceFile::class, "ticket_id");
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(MaintenanceCustomer::class, "vendor_id");
+    }
+
+    public function getVendorName()
+    {
+        if ($this->vendor) {
+            return $this->vendor->name;
+        }
+        return null;
+    }
 }

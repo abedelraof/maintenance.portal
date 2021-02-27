@@ -155,6 +155,10 @@
             color: white !important;
         }
 
+        .subheader .subheader-nav.nav .nav-item {
+            flex-basis: auto;
+        }
+
     </style>
 
 </head>
@@ -328,12 +332,22 @@
                     <!--begin::Nav-->
                     <div class="subheader-nav nav  ml-5">
                         <!--begin::Item-->
-                        <a href="#"
-                           class="nav-item active">
+                        <a href="{{ route("tickets.list") }}"
+                           class="nav-item {{ handleActiveMenuItem("tickets.list") }}">
 									<span class="nav-label px-10">
 										<span
-                                            class="nav-title text-dark-75 font-weight-bold font-size-h4">طلبات الصيانة</span>
-										<span class="nav-desc text-muted">إضافة طلب صيانة جديد</span>
+                                            class="nav-title text-dark-75 font-weight-bold font-size-h4">عرض الطلبات </span>
+										<span class="nav-desc text-muted"> عرض كافة الطلبات</span>
+									</span>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="{{ route("tickets.create") }}"
+                           class="nav-item {{ handleActiveMenuItem("tickets.create") }}">
+									<span class="nav-label px-10">
+										<span
+                                            class="nav-title text-dark-75 font-weight-bold font-size-h4">طلب جديد</span>
+										<span class="nav-desc text-muted">إضافة طلب صيانة </span>
 									</span>
                         </a>
                         <!--end::Item-->
@@ -391,7 +405,7 @@
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-{{--            <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">--}}
+        {{--            <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">--}}
         {{--                <!--begin::Container-->--}}
         {{--                <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">--}}
         {{--                    <!--begin::Copyright-->--}}
@@ -410,7 +424,7 @@
         {{--                </div>--}}
         {{--                <!--end::Container-->--}}
         {{--            </div>--}}
-            <!--end::Footer-->
+        <!--end::Footer-->
         </div>
         <!--end::Wrapper-->
     </div>
