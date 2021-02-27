@@ -63,11 +63,11 @@ class DatabaseHelper
             if (DB::connection($connectionName)->getDatabaseName()) {
                 // tbl_contract is our test case.
                 if (!Schema::connection($connectionName)->hasTable($testCaseTable)) {
-//                    abort(404);
+                    abort(404);
                 }
             }
         } catch (\Exception $exception) {
-//            abort(404);
+            abort(404);
         }
 
     }
