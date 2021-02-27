@@ -23,6 +23,8 @@ class DatabaseHelper
         config([
             "database.connections.asaas" => [
                 'driver' => 'mysql',
+                'host' => env('AS_DB_HOST'),
+                'port' => env('AS_DB_PORT', 3306),
                 'database' => $asaasDatabaseName,
                 'username' => env('AS_DB_USERNAME'),
                 'password' => env('AS_DB_PASSWORD'),
@@ -36,6 +38,8 @@ class DatabaseHelper
             ],
             "database.connections.maintenance" => [
                 'driver' => 'mysql',
+                'host' => env('MA_DB_HOST'),
+                'port' => env('MA_DB_PORT', 3306),
                 'database' => $maintenanceDatabaseName,
                 'username' => env('MA_DB_USERNAME'),
                 'password' => env('MA_DB_PASSWORD'),
