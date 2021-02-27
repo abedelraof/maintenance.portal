@@ -49,9 +49,9 @@
                                 </td>
                             </tr>
                         @endforeach
-                        @if($data->empty())
+                        @if($data->isEmpty())
                             <tr>
-                                <td colspan="6">لا توجد بيانات</td>
+                                <td class="text-center" colspan="6">لا توجد بيانات</td>
                             </tr>
                         @endif
                         </tbody>
