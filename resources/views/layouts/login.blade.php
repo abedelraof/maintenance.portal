@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>مجموعة محمد النهدي العقارية</title>
+    <title>{{ currentConnection()->account_name }}</title>
 
     <!--begin::Page Custom Styles(used by this page)-->
     <link href="/css/login-1.css" rel="stylesheet" type="text/css">

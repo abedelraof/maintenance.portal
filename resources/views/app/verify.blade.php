@@ -18,7 +18,7 @@
                     <div class="pb-13 pt-lg-0 pt-5">
                         <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">أهلا وسهلا بك</h3>
                         <span
-                            class="text-muted font-weight-bold font-size-h4">مجموعة محمد النهدي - بوابة المستأجرين</span>
+                            class="text-muted font-weight-bold font-size-h4">{{ currentConnection()->account_name }} - بوابة المستأجرين</span>
                     </div>
                     <!--begin::Title-->
                     <!--begin::Form group-->
