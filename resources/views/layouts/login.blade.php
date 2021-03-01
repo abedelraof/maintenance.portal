@@ -45,7 +45,7 @@
                 <!--begin::Aside header-->
                 <a href="#" class="text-center mb-15">
                     <img src="{{ currentConnection()->login_account_logo }}" alt="logo"
-                         style="height: 200px !important;">
+                         style="max-height: 200px !important;max-width: 60% !important;">
                 </a>
                 <!--end::Aside header-->
                 <!--begin::Aside title-->
