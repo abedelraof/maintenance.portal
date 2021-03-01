@@ -28,7 +28,7 @@ class CheckLoginFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "contractNumber" => "required|numeric",
+            "contractNumber" => "required",
             "id" => "required|numeric"
         ];
     }
